@@ -1,17 +1,17 @@
-// angular.module('auction-app')
-//   .directive('itemCard', itemCard);
+angular.module('auction-app')
+  .directive('itemCard', itemCard);
 
 
-// function wdiCard(){
-//   var directive = {
-//     scope: {
-//       question: '@'
-//     },
-//     restrict: 'E',
-//     templateUrl: './templates/itemDirective.html',
-//     replace: true
-//   };
+function itemCard(){
+  var directive = {
+    scope: {
+      item: '@'
+    },
+    restrict: 'E',
+    templateUrl: '../views/templates/item.html',
+    replace: true
+  };
 
 
-//   return directive;
-// }
+  return directive;
+}

@@ -11,15 +11,19 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
 
   <script src="../public/scripts/app.js"></script>
+  <script src="public/scripts/controllers/itemsController.js"></script>
+  <script src="public/scripts/directives/item.js"></script>
 
 
 </head>
 <body>
+<div ng-controller="itemsController as itemsCtrl">
+  {{itemsCtrl.test}}
+</div>
 
-{{2+2}}
 
-<!-- <div item-card>
-</div> -->
+<item-card item="Test Item Directive">
+</item-card>
 
 </body>
 </html>

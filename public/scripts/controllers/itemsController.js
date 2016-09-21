@@ -1,9 +1,9 @@
 angular
   .module('auction-app')
-  .controller('ItemsIndexController', ItemsIndexController);
+  .controller('itemsController', itemsController);
 
 
-function ItemsIndexController () {
+function itemsController () {
   var vm = this;
   vm.test = 'index test';
 
