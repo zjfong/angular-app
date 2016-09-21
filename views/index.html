@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="auction-app">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <base href="/"> -->
+  <title>auction-app</title>
+  <link rel="stylesheet" href="../public/styles/styles.css">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+
+
+
+  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <script src="scripts/app.js"></script>
+  <script src="scripts/controllers/itemsController.js"></script>
+  <script src="scripts/directives/item.js"></script>
+  <script type="text/javascript" src="scripts/services/item.service.js"></script>
+
+
+</head>
+<body>
+<div ng-controller="itemsController as itemsCtrl">
+  {{itemsCtrl.test}}
+</div>
+
+<div class="row">
+  <div class="col-sm-2">
+    <form  id="newItemForm">
+     <div class="form-group">
+       <label for="title">Name</label>
+       <input required type="text" class="form-control" name="name" placeholder="Name">
+     </div>
+     <div class="form-group">
+       <label for="title">Description</label>
+       <input required type="text" class="form-control" name="description" placeholder="Description">
+     </div>
+     <div class="form-group">
+       <label for="title">Price</label>
+       <input required type="text" class="form-control" name="name" placeholder="Price">
+     </div>
+     <button type="submit" class="btn btn-default">Add</button>
+    </form>
+  </div>
+
+
+  <div ng-controller="itemsController as itemsCtrl">
+    <div class="col-sm-2">
+      <div ng-repeat="item in itemsCtrl.itemsList">
+        <item-card item="{{item.name}}">
+        </item-card>
+        <item-card item="{{item.price | currency}}">
+        </item-card>
+        <br>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+</body>
+</html>

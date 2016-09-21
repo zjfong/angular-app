@@ -8,7 +8,7 @@ function itemCard(){
       item: '@'
     },
     restrict: 'E',
-    templateUrl: '../views/templates/item.html',
+    templateUrl: '/templates/item',
     replace: true
   };
 
