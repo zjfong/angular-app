@@ -11,7 +11,7 @@ function itemsController () {
     {
       name: 'Dunder Mifflin Paper',
       condition: 'new',
-      price: 50
+      price: '50'
     },
     {
       name: 'Yellow Umbrella',

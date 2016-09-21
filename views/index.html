@@ -22,9 +22,6 @@
 
 </head>
 <body>
-<div ng-controller="itemsController as itemsCtrl">
-  {{itemsCtrl.test}}
-</div>
 
 <div class="row">
   <div class="col-sm-2">
@@ -49,9 +46,7 @@
   <div ng-controller="itemsController as itemsCtrl">
     <div class="col-sm-2">
       <div ng-repeat="item in itemsCtrl.itemsList">
-        <item-card item="{{item.name}}">
-        </item-card>
-        <item-card item="{{item.price | currency}}">
+        <item-card item="item">
         </item-card>
         <br>
       </div>
