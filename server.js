@@ -8,8 +8,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/vendor', express.static(__dirname + '/bower_components'));
 
-// var controllers = require('./controllers');
-
 
 app.get('/', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
@@ -21,11 +19,17 @@ app.get('/templates/:name', function templates(req, res) {
 });
 
 
+var controllers = require('./controllers');
+app.get('/api', controllers.api.index);
+
+
+
+
+
 
 app.get('*', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
-
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
