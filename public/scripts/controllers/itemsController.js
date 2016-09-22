@@ -7,12 +7,12 @@ function itemsController ($http, $scope) {
   var vm = this;
   vm.test = 'index test';
   vm.newItem = {};
-  vm.newItem.condition="new";
+  vm.newItem.condition="Twix";
   vm.newItem.price="1";
   vm.newItem.time="5000";
 
 
-vm.showItems = function(){
+
   $http({
     method: 'GET',
     url: '/api/items'
@@ -22,8 +22,7 @@ vm.showItems = function(){
   }, function onError (error){
     console.log('GET error ', error);
   });
-}
-vm.showItems();
+
 
   vm.createItem = function(){
     // console.log('hello')
@@ -35,7 +34,6 @@ vm.showItems();
       console.log(response.data)
       vm.itemsList.push(response.data);
       console.log(vm.itemsList);
-      vm.showItems();
 
       setTimeout(function(){
         vm.deleteItem(response.data)
