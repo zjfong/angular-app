@@ -9,7 +9,7 @@ function itemsController ($http, $scope) {
   vm.newItem = {};
   vm.newItem.description="Twix";
   vm.newItem.price="1";
-  vm.newItem.time="5000";
+  vm.newItem.time="5";
   vm.newItem.increment="0.05";
 
 
@@ -35,7 +35,7 @@ function itemsController ($http, $scope) {
       vm.itemsList.push(response.data);
       setTimeout(function(){
         vm.deleteItem(response.data)
-      }, response.data.time);
+      }, response.data.time * 1000 * 60 * 60);
 
     }, function onError(error){
       console.log('POST error ', error);
