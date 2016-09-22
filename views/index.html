@@ -16,27 +16,27 @@
 
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers/itemsController.js"></script>
-  <script src="scripts/directives/item.js"></script>
+  <script src="scripts/directives/itemDirective.js"></script>
   <script type="text/javascript" src="scripts/services/item.service.js"></script>
 
 
 </head>
 <body>
 
-<div class="row">
+<div class="row" ng-controller="itemsController as itemsCtrl">
   <div class="col-sm-2">
-    <form  id="newItemForm">
+    <form  id="newItemForm" ng-submit="itemsCtrl.createItem()">
      <div class="form-group">
        <label for="title">Name</label>
-       <input required type="text" class="form-control" name="name" placeholder="Name">
+       <input required ng-model="itemsCtrl.newItem.name" type="text" class="form-control" name="name" placeholder="Name">
      </div>
      <div class="form-group">
        <label for="title">Description</label>
-       <input required type="text" class="form-control" name="description" placeholder="Description">
+       <input required ng-model="itemsCtrl.newItem.condition" type="text" class="form-control" name="condition" placeholder="Condition">
      </div>
      <div class="form-group">
        <label for="title">Price</label>
-       <input required type="text" class="form-control" name="name" placeholder="Price">
+       <input required ng-model="itemsCtrl.newItem.price" type="text" class="form-control" name="name" placeholder="Price">
      </div>
      <button type="submit" class="btn btn-default">Add</button>
     </form>

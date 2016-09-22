@@ -22,24 +22,27 @@ app.get('/templates/:name', function templates(req, res) {
 var controllers = require('./controllers');
 app.get('/api', controllers.api.index);
 
-var itemsList = [
-    {
-      name: 'Dunder Mifflin Paper',
-      condition: 'new',
-      price: '50'
-    },
-    {
-      name: 'Yellow Umbrella',
-      condition: 'used',
-      price: '5'
-    }
-  ]
+// var itemsList = [
+//     {
+//       name: 'Dunder Mifflin Paper',
+//       condition: 'new',
+//       price: '50'
+//     },
+//     {
+//       name: 'Yellow Umbrella',
+//       condition: 'used',
+//       price: '5'
+//     }
+//   ]
 
 
-app.get('/api/items', function (req, res){
-  res.json(itemsList);
-})
+// app.get('/api/items', function (req, res){
+//   res.json(itemsList);
+// })
 
+app.get('/api/items', controllers.items.index);
+
+// app.post('/api/items', controllers.items.create);
 
 
 

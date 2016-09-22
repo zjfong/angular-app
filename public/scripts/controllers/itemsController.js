@@ -2,10 +2,11 @@ angular
   .module('auction-app')
   .controller('itemsController', itemsController);
 
-// itemsController.$inject = ['$http'];
+itemsController.$inject = ['$http'];
 function itemsController ($http) {
   var vm = this;
   vm.test = 'index test';
+  vm.newItem = {};
 
   // vm.itemsList = [
   //   {
@@ -25,16 +26,31 @@ function itemsController ($http) {
   $http({
     method: 'GET',
     url: '/api/items'
-  }).then(onSuccess, onError)
-
-  function onSuccess (response){
+  }).then(function onSuccess (response){
     // console.log(response.data);
     vm.itemsList = response.data;
+  }, function onError (error){
+    console.log('GET error ', error);
+  });
+
+  vm.createItem = function(){
+    console.log('hello')
+    $http({
+      method: 'POST',
+      url: '/api/items',
+      data: vm.newItem
+    }).then(function onSuccess(response){
+      console.log(response.data)
+      vm.newItem.push(response.data)
+    }, function onError(error){
+      console.log('POST error ', error);
+    });
   }
 
-  function onError (error){
-    console.log('get error ', error);
-  }
+
+
+
+
 
 
 
