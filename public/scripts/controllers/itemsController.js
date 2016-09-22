@@ -2,15 +2,30 @@ angular
   .module('auction-app')
   .controller('itemsController', itemsController);
 
-itemsController.$inject = ['$http', '$scope'];
-function itemsController ($http, $scope) {
+itemsController.$inject = ['$http', '$timeout'];
+function itemsController ($http, $timeout) {
   var vm = this;
   vm.test = 'index test';
   vm.newItem = {};
   vm.newItem.description="Twix";
   vm.newItem.price="1";
-  vm.newItem.time="5";
+  vm.newItem.time="0.08";
   vm.newItem.increment="0.05";
+
+
+
+    vm.onTimeout = function(){
+        vm.itemsList.map(function itemTime(item){
+          if(item.time > 0){
+            item.time--
+          }
+        })
+        mytimeout = $timeout(vm.onTimeout,1000 * 60);
+    }
+
+
+
+
 
 
 
@@ -18,11 +33,13 @@ function itemsController ($http, $scope) {
     method: 'GET',
     url: '/api/items'
   }).then(function onSuccess (response){
-    // console.log(response.data);
     vm.itemsList = response.data;
+    console.log('item list ', vm.itemsList)
+    vm.onTimeout();
   }, function onError (error){
     console.log('GET error ', error);
   });
+
 
 
   vm.createItem = function(){
@@ -35,7 +52,7 @@ function itemsController ($http, $scope) {
       vm.itemsList.push(response.data);
       setTimeout(function(){
         vm.deleteItem(response.data)
-      }, response.data.time * 1000 * 60 * 60);
+      }, response.data.time * 1000 * 60);
 
     }, function onError(error){
       console.log('POST error ', error);
