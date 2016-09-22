@@ -5,7 +5,8 @@ angular.module('auction-app')
 function itemCard(){
   var directive = {
     scope: {
-      item: '='
+      item: '=',
+      delete: '&'
     },
     restrict: 'E',
     templateUrl: '/templates/item',

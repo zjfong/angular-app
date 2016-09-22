@@ -41,9 +41,34 @@ function itemsController ($http) {
       data: vm.newItem
     }).then(function onSuccess(response){
       console.log(response.data)
-      vm.newItem.push(response.data)
+      vm.itemsList.push(response.data)
     }, function onError(error){
       console.log('POST error ', error);
+    });
+  }
+
+  //  vm.editItem = function (item) {
+  //   $http({
+  //     method: 'PUT',
+  //     url: '/api/items/'+item._id,
+  //     data: item
+  //   }).then(function onSuccess(response) {
+
+  //   }, function errorCallback(response) {
+  //     console.log('PUT error ', response);
+  //   });
+  // }
+
+  vm.deleteItem = function (item) {
+    console.log(item)
+    $http({
+      method: 'DELETE',
+      url: '/api/items/'+ item._id
+    }).then(function onSuccess(response) {
+      var index = vm.itemsList.indexOf(item);
+      vm.itemsList.splice(index,1)
+    }, function errorCallback(response) {
+      console.log('DELETE error ', response);
     });
   }
 
