@@ -7,7 +7,7 @@ function itemCard(){
     scope: {
       item: '=',
       delete: '&',
-      edit: '&'
+      bid: '&'
     },
     restrict: 'E',
     templateUrl: '/templates/item',

@@ -43,31 +43,30 @@
        <input required ng-model="itemsCtrl.newItem.increment" type="text" class="form-control" name="name" placeholder="Increment">
      </div>
      <div class="form-group">
-       <label for="title">Time (minutes)</label>
+       <label for="title">Time (seconds)</label>
        <input required ng-model="itemsCtrl.newItem.time" type="text" class="form-control" name="name" placeholder="Time">
      </div>
-     <button type="submit" class="btn btn-default">Add</button>
+     <button type="submit" class="btn btn-success">Add</button>
     </form>
   </div>
 
   <div class="col-sm-2">
     <div ng-repeat="item in itemsCtrl.itemsList">
-      <item-card edit="itemsCtrl.bidItem(item)" delete="itemsCtrl.deleteItem(item)" item="item">
+      <item-card bid="itemsCtrl.bidItem(item)" item="item">
       </item-card>
-      <br>
     </div>
   </div>
 
   <div class="col-sm-2">
     <div ng-repeat="item in itemsCtrl.itemsList">
-      <p>{{item.name}}</p>
-      <p>{{item.description}}</p>
-      <p>{{item.price | currency}}</p>
-      <p>{{item.time}}</p>
-
+      <div id="soldItems" ng-hide="{{item.time}}">
+        <p>Name: {{item.name}}</p>
+        <p>Description: {{item.description}}</p>
+        <p>Price: {{item.price | currency}}</p>
+        <button ng-click="itemsCtrl.deleteItem(item)" type="button" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
   </div>
-
-</div>
 
 
 

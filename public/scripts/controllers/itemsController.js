@@ -5,11 +5,11 @@ angular
 itemsController.$inject = ['$http', '$timeout'];
 function itemsController ($http, $timeout) {
   var vm = this;
-  vm.test = 'index test';
+  vm.itemsSold = [];
   vm.newItem = {};
   vm.newItem.description="Twix";
   vm.newItem.price="1";
-  vm.newItem.time="0.08";
+  vm.newItem.time="5";
   vm.newItem.increment="0.05";
 
 
@@ -18,9 +18,13 @@ function itemsController ($http, $timeout) {
         vm.itemsList.map(function itemTime(item){
           if(item.time > 0){
             item.time--
+            vm.setItemTime(item);
+
+          } else if (item.time === 0){
+            return;
           }
         })
-        mytimeout = $timeout(vm.onTimeout,1000 * 60);
+        mytimeout = $timeout(vm.onTimeout,1000 );
     }
 
 
@@ -51,7 +55,7 @@ function itemsController ($http, $timeout) {
       console.log(response.data)
       vm.itemsList.push(response.data);
       setTimeout(function(){
-        vm.deleteItem(response.data)
+        // vm.deleteItem(response.data)
       }, response.data.time * 1000 * 60);
 
     }, function onError(error){
@@ -61,7 +65,20 @@ function itemsController ($http, $timeout) {
 
 
   vm.bidItem = function (item) {
-    item.price = item.price + item.increment
+    item.price = item.price + item.increment;
+    $http({
+      method: 'PUT',
+      url: '/api/items/'+item._id,
+      data: item
+    }).then(function onSuccess(response) {
+      var index = vm.itemsList.indexOf(item);
+      vm.itemsList.splice(index,1,response.data)
+    }, function errorCallback(response) {
+      console.log('PUT error ', response);
+    });
+  }
+
+  vm.setItemTime = function (item) {
     $http({
       method: 'PUT',
       url: '/api/items/'+item._id,
