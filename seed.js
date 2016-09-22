@@ -5,13 +5,15 @@ var itemsList = [];
 
 itemsList.push({
       name: 'Dunder Mifflin Paper',
-      condition: 'new',
-      price: '50'
+      description: 'new',
+      price: '50',
+      time: '3'
     });
 itemsList.push({
       name: 'Yellow Umbrella',
-      condition: 'used',
-      price: '5'
+      description: 'used',
+      price: '5',
+      time: '5'
     });
 
 

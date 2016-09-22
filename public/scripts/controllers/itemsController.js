@@ -2,27 +2,17 @@ angular
   .module('auction-app')
   .controller('itemsController', itemsController);
 
-itemsController.$inject = ['$http'];
-function itemsController ($http) {
+itemsController.$inject = ['$http', '$scope'];
+function itemsController ($http, $scope) {
   var vm = this;
   vm.test = 'index test';
   vm.newItem = {};
-
-  // vm.itemsList = [
-  //   {
-  //     name: 'Dunder Mifflin Paper',
-  //     condition: 'new',
-  //     price: '50'
-  //   },
-  //   {
-  //     name: 'Yellow Umbrella',
-  //     condition: 'used',
-  //     price: '5'
-  //   }
-  // ]
+  vm.newItem.condition="new";
+  vm.newItem.price="1";
+  vm.newItem.time="5000";
 
 
-
+vm.showItems = function(){
   $http({
     method: 'GET',
     url: '/api/items'
@@ -32,16 +22,25 @@ function itemsController ($http) {
   }, function onError (error){
     console.log('GET error ', error);
   });
+}
+vm.showItems();
 
   vm.createItem = function(){
-    console.log('hello')
+    // console.log('hello')
     $http({
       method: 'POST',
       url: '/api/items',
       data: vm.newItem
     }).then(function onSuccess(response){
       console.log(response.data)
-      vm.itemsList.push(response.data)
+      vm.itemsList.push(response.data);
+      console.log(vm.itemsList);
+      vm.showItems();
+
+      setTimeout(function(){
+        vm.deleteItem(response.data)
+      }, response.data.time);
+
     }, function onError(error){
       console.log('POST error ', error);
     });
