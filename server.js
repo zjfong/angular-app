@@ -43,6 +43,7 @@ app.get('/api', controllers.api.index);
 app.get('/api/items', controllers.items.index);
 app.post('/api/items', controllers.items.create);
 app.delete('/api/items/:itemId', controllers.items.destroy);
+app.put('/api/items/:itemId', controllers.items.update);
 
 
 

@@ -6,7 +6,8 @@ function itemCard(){
   var directive = {
     scope: {
       item: '=',
-      delete: '&'
+      delete: '&',
+      edit: '&'
     },
     restrict: 'E',
     templateUrl: '/templates/item',

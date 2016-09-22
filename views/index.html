@@ -32,14 +32,18 @@
      </div>
      <div class="form-group">
        <label for="title">Description</label>
-       <input required ng-model="itemsCtrl.newItem.condition" type="text" class="form-control" name="description" placeholder="Description">
+       <input required ng-model="itemsCtrl.newItem.description" type="text" class="form-control" name="description" placeholder="Description">
      </div>
      <div class="form-group">
-       <label for="title">Price</label>
+       <label for="title">Price (USD)</label>
        <input required ng-model="itemsCtrl.newItem.price" type="text" class="form-control" name="name" placeholder="Price">
      </div>
      <div class="form-group">
-       <label for="title">Time</label>
+       <label for="title">Increment (USD)</label>
+       <input required ng-model="itemsCtrl.newItem.increment" type="text" class="form-control" name="name" placeholder="Increment">
+     </div>
+     <div class="form-group">
+       <label for="title">Time (ms)</label>
        <input required ng-model="itemsCtrl.newItem.time" type="text" class="form-control" name="name" placeholder="Time">
      </div>
      <button type="submit" class="btn btn-default">Add</button>
@@ -47,15 +51,22 @@
   </div>
 
 
-  <div >
-    <div class="col-sm-2">
-      <div ng-repeat="item in itemsCtrl.itemsList">
-        <item-card delete="itemsCtrl.deleteItem(item)" item="item">
-        </item-card>
-        <br>
-      </div>
+  <div class="col-sm-2">
+    <div ng-repeat="item in itemsCtrl.itemsList">
+      <item-card edit="itemsCtrl.bidItem(item)" delete="itemsCtrl.deleteItem(item)" item="item">
+      </item-card>
+      <br>
     </div>
   </div>
+
+  <!-- <div class="col-sm-2">
+    <div ng-repeat="item in itemsCtrl.itemsList">
+      <p>{{item.name}}</p>
+      <p>{{item.condition}}</p>
+      <p>{{item.price | currency}}</p>
+      <p>{{item.time}}</p>
+
+  </div> -->
 
 </div>
 

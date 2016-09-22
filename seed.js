@@ -7,12 +7,14 @@ itemsList.push({
       name: 'Dunder Mifflin Paper',
       description: 'new',
       price: '50',
+      increment: '50',
       time: '3'
     });
 itemsList.push({
       name: 'Yellow Umbrella',
       description: 'used',
-      price: '5',
+      price: '5.5',
+      increment: '0.5',
       time: '5'
     });
 

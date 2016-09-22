@@ -24,10 +24,25 @@ function destroy(req, res) {
   });
 }
 
+function update(req, res) {
+  db.Item.findOneAndUpdate({ _id: req.params.itemId }, {$set: {
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    increment: req.body.increment,
+    time: req.body.time
+  }}, {new:true}).exec(function (error,editItem){
+    if(error){
+      res.status(500).send(err);
+    }
+    res.json(editItem)
+  })
+}
 
 
 module.exports = {
   index: index,
   create: create,
-  destroy: destroy
+  destroy: destroy,
+  update: update
 };

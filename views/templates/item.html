@@ -1,9 +1,10 @@
 <div>
-  <p>{{item.name}}</p>
-  <p>{{item.condition}}</p>
-  <p>{{item.price | currency}}</p>
-  <p>{{item.time}}</p>
-  <button type="button" class="btn btn-warning">Edit</button>
+  <p>Name: {{item.name}}</p>
+  <p>Description: {{item.description}}</p>
+  <p>Price: {{item.price | currency}}</p>
+  <p>Increment: {{item.increment | currency}}</p>
+  <p>Time: {{item.time}}</p>
+  <button ng-click="edit()" type="button" class="btn btn-warning">Bid</button>
   <button ng-click="delete()" type="button" class="btn btn-danger">Delete</button>
 </div>
 

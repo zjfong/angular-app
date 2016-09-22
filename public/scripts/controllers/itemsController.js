@@ -7,9 +7,10 @@ function itemsController ($http, $scope) {
   var vm = this;
   vm.test = 'index test';
   vm.newItem = {};
-  vm.newItem.condition="Twix";
+  vm.newItem.description="Twix";
   vm.newItem.price="1";
   vm.newItem.time="5000";
+  vm.newItem.increment="0.05";
 
 
 
@@ -25,7 +26,6 @@ function itemsController ($http, $scope) {
 
 
   vm.createItem = function(){
-    // console.log('hello')
     $http({
       method: 'POST',
       url: '/api/items',
@@ -33,8 +33,6 @@ function itemsController ($http, $scope) {
     }).then(function onSuccess(response){
       console.log(response.data)
       vm.itemsList.push(response.data);
-      console.log(vm.itemsList);
-
       setTimeout(function(){
         vm.deleteItem(response.data)
       }, response.data.time);
@@ -44,17 +42,20 @@ function itemsController ($http, $scope) {
     });
   }
 
-  //  vm.editItem = function (item) {
-  //   $http({
-  //     method: 'PUT',
-  //     url: '/api/items/'+item._id,
-  //     data: item
-  //   }).then(function onSuccess(response) {
 
-  //   }, function errorCallback(response) {
-  //     console.log('PUT error ', response);
-  //   });
-  // }
+  vm.bidItem = function (item) {
+    item.price = item.price + item.increment
+    $http({
+      method: 'PUT',
+      url: '/api/items/'+item._id,
+      data: item
+    }).then(function onSuccess(response) {
+      var index = vm.itemsList.indexOf(item);
+      vm.itemsList.splice(index,1,response.data)
+    }, function errorCallback(response) {
+      console.log('PUT error ', response);
+    });
+  }
 
   vm.deleteItem = function (item) {
     console.log(item)
