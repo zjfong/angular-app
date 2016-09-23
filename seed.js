@@ -8,14 +8,14 @@ itemsList.push({
       description: 'new',
       price: '50',
       increment: '50',
-      time: '10'
+      time: '5'
     });
 itemsList.push({
       name: 'Yellow Umbrella',
       description: 'used',
       price: '5.5',
       increment: '0.5',
-      time: '1000'
+      time: '10'
     });
 
 

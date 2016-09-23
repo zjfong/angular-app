@@ -11,22 +11,37 @@ function itemsController ($http, $timeout) {
   vm.newItem.price="1";
   vm.newItem.time="5";
   vm.newItem.increment="0.05";
+  vm.soldOut = false;
 
 
 
-    vm.onTimeout = function(){
-        vm.itemsList.map(function itemTime(item){
-          if(item.time > 0){
-            item.time--
-            vm.setItemTime(item);
+  vm.onTimeout = function(){
+    vm.itemsList.map(function itemTime(item){
+      if(item.time > 0){
+        item.time--
+        vm.setItemTime(item);
+        vm.checkAllTimes();
+      }
+      // else if (item.time === 0){
+      //   return;
+      // }
+    })
+    mytimeout = $timeout(vm.onTimeout,1000 );
+  }
 
-          } else if (item.time === 0){
-            return;
-          }
-        })
-        mytimeout = $timeout(vm.onTimeout,1000 );
+
+  vm.checkAllTimes = function(){
+    var check = vm.itemsList.filter(function isTimeZero(item){
+      if(item.time > 0){
+        return true;
+      }
+    })
+    // console.log(check)
+    if(check.length === 0){
+      vm.soldOut=true;
+      console.log(vm.soldOut)
     }
-
+  }
 
 
 
@@ -40,6 +55,7 @@ function itemsController ($http, $timeout) {
     vm.itemsList = response.data;
     console.log('item list ', vm.itemsList)
     vm.onTimeout();
+    vm.checkAllTimes();
   }, function onError (error){
     console.log('GET error ', error);
   });
@@ -53,6 +69,7 @@ function itemsController ($http, $timeout) {
       data: vm.newItem
     }).then(function onSuccess(response){
       console.log(response.data)
+      vm.soldOut=false;
       vm.itemsList.push(response.data);
       setTimeout(function(){
         // vm.deleteItem(response.data)

@@ -51,6 +51,9 @@
   </div>
 
   <div class="col-sm-2">
+    <div ng-show="itemsCtrl.soldOut">
+      No items for sale.
+    </div>
     <div ng-repeat="item in itemsCtrl.itemsList">
       <item-card bid="itemsCtrl.bidItem(item)" item="item">
       </item-card>
@@ -58,6 +61,9 @@
   </div>
 
   <div class="col-sm-2">
+    <div ng-show="vm.soldOut">
+
+    </div>
     <div ng-repeat="item in itemsCtrl.itemsList">
       <div id="soldItems" ng-hide="{{item.time}}">
         <p>Name: {{item.name}}</p>
