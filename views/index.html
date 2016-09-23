@@ -24,7 +24,7 @@
 <body>
 
 <div class="row" ng-controller="itemsController as itemsCtrl">
-  <div class="col-sm-2">
+  <div class="col-sm-4">
     <form  id="newItemForm" ng-submit="itemsCtrl.createItem()">
      <div class="form-group">
        <label for="title">Name</label>
@@ -50,7 +50,7 @@
     </form>
   </div>
 
-  <div class="col-sm-2">
+  <div class="col-sm-4">
     <div ng-show="itemsCtrl.soldOut">
       No items for sale.
     </div>
@@ -60,9 +60,9 @@
     </div>
   </div>
 
-  <div class="col-sm-2">
-    <div ng-show="vm.soldOut">
-
+  <div class="col-sm-4">
+    <div ng-hide="itemsCtrl.isItemsSold">
+      No items sold.
     </div>
     <div ng-repeat="item in itemsCtrl.itemsList">
       <div id="soldItems" ng-hide="{{item.time}}">

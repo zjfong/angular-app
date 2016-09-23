@@ -12,6 +12,7 @@ function itemsController ($http, $timeout) {
   vm.newItem.time="5";
   vm.newItem.increment="0.05";
   vm.soldOut = false;
+  vm.isItemsSold = false;
 
 
 
@@ -20,7 +21,8 @@ function itemsController ($http, $timeout) {
       if(item.time > 0){
         item.time--
         vm.setItemTime(item);
-        vm.checkAllTimes();
+        vm.checkSaleTimes();
+        vm.checkSoldTimes();
       }
       // else if (item.time === 0){
       //   return;
@@ -30,7 +32,7 @@ function itemsController ($http, $timeout) {
   }
 
 
-  vm.checkAllTimes = function(){
+  vm.checkSaleTimes = function(){
     var check = vm.itemsList.filter(function isTimeZero(item){
       if(item.time > 0){
         return true;
@@ -39,7 +41,27 @@ function itemsController ($http, $timeout) {
     // console.log(check)
     if(check.length === 0){
       vm.soldOut=true;
-      console.log(vm.soldOut)
+      // console.log('soldOut ', vm.soldOut)
+    }
+  }
+
+  vm.checkSoldTimes = function(){
+    var check = vm.itemsList.filter(function isTimeZero(item){
+      if(item.time === 0){
+        return true;
+      }
+    })
+    console.log(check)
+    if(check.length === vm.itemsList.length){
+      vm.isItemsSold=false;
+      // console.log('isItemsSold ', vm.isItemsSold)
+    }
+    if(check.length>0){
+      vm.isItemsSold=true;
+      // console.log('isItemsSold ', vm.isItemsSold)
+    }
+    if(check.length === 0){
+      vm.isItemsSold=false;
     }
   }
 
@@ -55,7 +77,8 @@ function itemsController ($http, $timeout) {
     vm.itemsList = response.data;
     console.log('item list ', vm.itemsList)
     vm.onTimeout();
-    vm.checkAllTimes();
+    vm.checkSaleTimes();
+    vm.checkSoldTimes();
   }, function onError (error){
     console.log('GET error ', error);
   });
@@ -116,6 +139,7 @@ function itemsController ($http, $timeout) {
     }).then(function onSuccess(response) {
       var index = vm.itemsList.indexOf(item);
       vm.itemsList.splice(index,1)
+      vm.checkSoldTimes();
     }, function errorCallback(response) {
       console.log('DELETE error ', response);
     });
