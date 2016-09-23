@@ -5,13 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- <base href="/"> -->
   <title>auction-app</title>
-  <link rel="stylesheet" href="../public/styles/styles.css">
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
 
 
 
+  <link rel="stylesheet" href="../styles/styles.css">
   <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
   <script src="scripts/app.js"></script>
@@ -23,12 +23,24 @@
 </head>
 <body>
 
+
+
+  <div id="test">
+
+  </div>
+
+
+
 <div class="row" ng-controller="itemsController as itemsCtrl">
   <div class="col-sm-4">
-    <form  id="newItemForm" ng-submit="itemsCtrl.createItem()">
+  <div id="add">
+    Add Item
+  </div>
+
+    <form id="newItemForm" ng-submit="itemsCtrl.createItem()">
      <div class="form-group">
        <label for="title">Name</label>
-       <input ng-init="itemsCtrl.newItem.name='Candy'" required ng-model="itemsCtrl.newItem.name" type="text" class="form-control" name="name" placeholder="Name">
+       <input required ng-model="itemsCtrl.newItem.name" type="text" class="form-control" name="name" placeholder="Name">
      </div>
      <div class="form-group">
        <label for="title">Description</label>
@@ -51,21 +63,27 @@
   </div>
 
   <div class="col-sm-4">
-    <div ng-show="itemsCtrl.soldOut">
+  <div id="add">
+    For Sale
+  </div>
+    <div id="noItemsSale" ng-show="itemsCtrl.soldOut">
       No items for sale.
     </div>
-    <div ng-repeat="item in itemsCtrl.itemsList">
-      <item-card bid="itemsCtrl.bidItem(item)" item="item">
+    <div id="itemsSale" ng-repeat="item in itemsCtrl.itemsList | orderBy: '+time'">
+      <item-card  bid="itemsCtrl.bidItem(item)" item="item">
       </item-card>
     </div>
   </div>
 
   <div class="col-sm-4">
-    <div ng-hide="itemsCtrl.isItemsSold">
+  <div id="add">
+    Sold
+  </div>
+    <div id="noItemsSold" ng-hide="itemsCtrl.isItemsSold">
       No items sold.
     </div>
-    <div ng-repeat="item in itemsCtrl.itemsList">
-      <div id="soldItems" ng-hide="{{item.time}}">
+    <div id="itemsSold" ng-repeat="item in itemsCtrl.itemsList | orderBy: '+name'">
+      <div ng-hide="{{item.time}}">
         <p>Name: {{item.name}}</p>
         <p>Description: {{item.description}}</p>
         <p>Price: {{item.price | currency}}</p>
@@ -73,6 +91,7 @@
       </div>
     </div>
   </div>
+</div>
 
 
 

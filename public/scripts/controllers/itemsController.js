@@ -7,12 +7,14 @@ function itemsController ($http, $timeout) {
   var vm = this;
   vm.itemsSold = [];
   vm.newItem = {};
-  vm.newItem.description="Twix";
-  vm.newItem.price="1";
-  vm.newItem.time="5";
-  vm.newItem.increment="0.05";
   vm.soldOut = false;
   vm.isItemsSold = false;
+
+  vm.newItem.name="Twix"
+  vm.newItem.description="candy";
+  vm.newItem.price="1";
+  vm.newItem.time="7";
+  vm.newItem.increment="0.05";
 
 
 

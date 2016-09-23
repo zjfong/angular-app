@@ -1,18 +1,47 @@
 
 
+
+
+
 #test{
-  background-color: green;
-  /*color: green;*/
-}
-
-
-header {
-  background-image: url("/images/gavel.jpg");
+  /*background-image: url("/images/auction_header.jpg");*/
+  background-image: url('http://puu.sh/rle8Q/53feb6e769.jpg');
   background-size: cover;
-  height: 300px;
-  color: red;
-  text-align: center;
-  color: white;
+  height: 150px;
+  width: 100%;
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
+#add{
+  font-size: 50px;
+  text-align: center;
+  border-bottom: 2px black solid;
+}
+
+
+
+
+
+#noItemsSale{
+  padding: 10px;
+}
+
+#noItemsSold{
+  padding: 10px;
+}
+
+
+#newItemForm{
+  /*border-right: 2px black solid;*/
+  padding: 10px
+}
+
+#itemsSale{
+  /*border-right: 2px black solid;*/
+  /*height: 404px;*/
+  /*padding: 10px;*/
+}
+
+#itemsSold{
+  /*border-left: 2px black solid;*/
+}
