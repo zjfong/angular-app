@@ -108,6 +108,7 @@ function itemsController ($http, $timeout) {
 
   vm.bidItem = function (item) {
     item.price = item.price + item.increment;
+    item.time = item.time + 10;
     $http({
       method: 'PUT',
       url: '/api/items/'+item._id,
