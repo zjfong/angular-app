@@ -1,1 +1,18 @@
 
+
+#test{
+  background-color: green;
+  /*color: green;*/
+}
+
+
+header {
+  background-image: url("/images/gavel.jpg");
+  background-size: cover;
+  height: 300px;
+  color: red;
+  text-align: center;
+  color: white;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
